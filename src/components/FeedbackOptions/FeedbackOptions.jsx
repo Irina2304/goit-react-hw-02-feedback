@@ -1,19 +1,20 @@
+import { Container, Btm } from "./FeedbackOption.styled";
 
-export const FeedbackOption = ({onBtnClick}) => {
+export const FeedbackOption = ({ onBtnClick }) => {
   return (
-    <div>
-        <button 
+    <Container>
+        <Btm 
             type='button'
-			className='good' 
-            onClick={(evt) => onBtnClick(evt.target.className)}> Good</button>
-        <button
+			id='good' 
+            onClick={(evt) => onBtnClick(evt.target.id)}> Good</Btm>
+        <Btm
             type='button'
-			className='neutral' 
-            onClick={(evt) => onBtnClick(evt.target.className)}> Neutral</button>
-        <button
+			id='neutral' 
+            onClick={(evt) => onBtnClick(evt.target.id)}> Neutral</Btm>
+        <Btm
             type='button'
-			className='bad' 
-            onClick={(evt) => onBtnClick(evt.target.className)}> Bad</button>
-    </div>
+			id='bad' 
+            onClick={(evt) => onBtnClick(evt.target.id)}> Bad</Btm>
+    </Container>
   );
 };

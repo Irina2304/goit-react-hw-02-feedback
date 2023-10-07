@@ -1,19 +1,24 @@
 import { FeedbackOption } from "components/FeedbackOptions/FeedbackOptions";
+import { Notification } from "components/Notification/Notification";
 import { Statistics } from "components/Statistics/Statistics";
+import { Container, NameSection } from "./SectionTitle.styled";
+
 
 
 export const SectionTitle = ({value, onBtnClick, total, positivePercentage}) => {
     
   return (
-    <div>
-        <h2>Please leave feedback</h2>
-        <FeedbackOption onBtnClick={onBtnClick}/>
+    <Container>
+        <NameSection>Please leave feedback</NameSection>
+        <FeedbackOption onBtnClick={onBtnClick} />
+        <NameSection>Statistics</NameSection>
         <Statistics
-              value={value}
-              total={total}
-              positivePercentage={positivePercentage}
+            value={value}
+            total={total}
+            positivePercentage={positivePercentage}
         />
-    </div>
+        <Notification/>
+    </Container>
   );
 };
 

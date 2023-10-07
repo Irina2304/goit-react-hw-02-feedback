@@ -11,6 +11,7 @@ export class App extends Component {
   }
 
   onBtnClick = (key) => {
+    console.log(key);
     switch (key) {
       case 'good':
         return this.setState((prevState) => ({ good: prevState.good + 1 }));
