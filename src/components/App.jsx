@@ -1,7 +1,6 @@
 import { Component } from 'react';
 import { SectionTitle } from './SectionTitle/SectionTitle';
 
-
 export class App extends Component {
 
   state = {
@@ -11,7 +10,6 @@ export class App extends Component {
   }
 
   onBtnClick = (key) => {
-    console.log(key);
     switch (key) {
       case 'good':
         return this.setState((prevState) => ({ good: prevState.good + 1 }));
@@ -32,12 +30,13 @@ export class App extends Component {
     const value = this.state;
   
     return (
-      <SectionTitle
-        value={value}
-        onBtnClick={this.onBtnClick}
-        total={this.countTotalFeedback()}
-        positivePercentage={this.countPositiveFeedbackPercentage()}
-      />
+
+        <SectionTitle
+          value={value}
+          onBtnClick={this.onBtnClick}
+          total={this.countTotalFeedback()}
+          positivePercentage={this.countPositiveFeedbackPercentage()}
+        />
     );
   }
 }

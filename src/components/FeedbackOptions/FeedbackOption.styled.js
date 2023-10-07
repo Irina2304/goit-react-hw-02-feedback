@@ -11,7 +11,7 @@ export const Btm = styled.button`
     border-radius: 5px;
     background-color: #f3e7c7;
     color: #6e5d47;
-    border: 2px solid bisque;
+    border: none;
     font-size: 18px;
     &:hover{
         background-color:#efd99c;

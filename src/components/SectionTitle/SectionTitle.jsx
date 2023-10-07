@@ -17,7 +17,7 @@ export const SectionTitle = ({value, onBtnClick, total, positivePercentage}) => 
             total={total}
             positivePercentage={positivePercentage}
         />
-        <Notification/>
+        <Notification total={total}/>
     </Container>
   );
 };
