@@ -1,5 +1,9 @@
 import { Component } from 'react';
 import { SectionTitle } from './SectionTitle/SectionTitle';
+import { FeedbackOption } from './FeedbackOptions/FeedbackOptions'
+import { Notification } from "./Notification/Notification";
+import { Statistics } from "./Statistics/Statistics";
+
 
 export class App extends Component {
 
@@ -10,33 +14,49 @@ export class App extends Component {
   }
 
   onBtnClick = (key) => {
-    switch (key) {
-      case 'good':
-        return this.setState((prevState) => ({ good: prevState.good + 1 }));
-      case 'neutral':
-        return this.setState((prevState) => ({ neutral: prevState.neutral + 1 }));
-      case 'bad':
-        return this.setState((prevState) => ({ bad: prevState.bad + 1 }));
-      default:
-        return;
-    }
+
+    return this.setState((prevState) => ({ [key]: prevState[key] + 1 }));
   }
 
-  countTotalFeedback = () => this.state.good + this.state.neutral + this.state.bad;
+  countTotalFeedback = () => {
+    const totalFeedback = Object.values(this.state).reduce((acc, value) =>
+      acc + value, 0);
+    return totalFeedback;
+  }
   
-  countPositiveFeedbackPercentage = () => Math.round((this.state.good * 100)/(this.state.good + this.state.neutral + this.state.bad));
-  
+ 
+  countPositiveFeedbackPercentage = () => {
+    const { good } = this.state
+    const total = this.countTotalFeedback()
+    return Math.round((good * 100)/total);
+  } 
+
+
+
   render() {
     const value = this.state;
   
     return (
+      <>
+        <SectionTitle title='Please leave feedback'>
+            <FeedbackOption
+              onBtnClick={this.onBtnClick}
+              value={value}
+            />
+        </SectionTitle>
 
-        <SectionTitle
-          value={value}
-          onBtnClick={this.onBtnClick}
-          total={this.countTotalFeedback()}
-          positivePercentage={this.countPositiveFeedbackPercentage()}
-        />
+        <SectionTitle title='Statistics'>
+          {this.countTotalFeedback() ? (
+            <Statistics
+              value={value}
+              total={this.countTotalFeedback()}
+              positivePercentage={this.countPositiveFeedbackPercentage()}
+            />
+          ) : (
+            <Notification total={this.countTotalFeedback()} />
+          )}    
+        </SectionTitle>
+      </>
     );
   }
 }
