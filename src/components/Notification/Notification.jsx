@@ -1,9 +1,9 @@
 import { Post } from "./Notification.styled";
 
 
-export const Notification = () => {
+export const Notification = ({title}) => {
     return (
-        <Post>There is no feedback!</Post>
+        <Post>{title}</Post>
     )
 
 }

@@ -19,9 +19,7 @@ export class App extends Component {
   }
 
   countTotalFeedback = () => {
-    const totalFeedback = Object.values(this.state).reduce((acc, value) =>
-      acc + value, 0);
-    return totalFeedback;
+    return Object.values(this.state).reduce((acc, value) => acc + value, 0);
   }
   
  
@@ -34,26 +32,25 @@ export class App extends Component {
 
 
   render() {
-    const value = this.state;
   
     return (
       <>
         <SectionTitle title='Please leave feedback'>
             <FeedbackOption
-              onBtnClick={this.onBtnClick}
-              value={value}
+            onBtnClick={this.onBtnClick}
+            value = {Object.keys(this.state)}
             />
         </SectionTitle>
 
         <SectionTitle title='Statistics'>
           {this.countTotalFeedback() ? (
             <Statistics
-              value={value}
+              value={this.state}
               total={this.countTotalFeedback()}
               positivePercentage={this.countPositiveFeedbackPercentage()}
             />
           ) : (
-            <Notification total={this.countTotalFeedback()} />
+            <Notification title='There is no feedback!'/>
           )}    
         </SectionTitle>
       </>
